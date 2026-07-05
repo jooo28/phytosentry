@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link href="https://fonts.cdnfonts.com/css/nasalization-2" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#050d06"/>
+  <title>PhytoSentry — Smart Plant Disease Detection</title>
+
+  <!-- DNS prefetch for external resources -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
+  <link rel="dns-prefetch" href="https://fonts.cdnfonts.com"/>
+
+  <!-- Preconnect to font origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <!-- Nasalization font (non-blocking) -->
+  <link rel="preload" as="style"
+    href="https://fonts.cdnfonts.com/css/nasalization"
+    onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/nasalization"/></noscript>
+
+  <!-- DM Sans (body font, non-blocking) -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap"/></noscript>
+
+  <!-- Critical above-the-fold CSS (inlined to avoid render blocking) -->
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:#050d06;color:#e8f5e9;
+      font-family:'Nasalization','DM Sans',system-ui,sans-serif;
+      line-height:1.6;-webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    #root{min-height:100vh}
+    /* Loading splash — replaced instantly by React */
+    .splash{
+      position:fixed;inset:0;display:grid;place-items:center;
+      background:radial-gradient(circle at 50% 18%,rgba(74,222,128,.14),transparent 36%),radial-gradient(circle at 50% 70%,rgba(34,197,94,.08),transparent 46%),#050d06;z-index:9999;
+      transition:opacity .35s;
+    }
+    .splashWrap{display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .splash-mark{position:relative;width:min(420px,78vw);aspect-ratio:957/710;margin-bottom:14px}
+    .splash-logo-base,.splash-logo-fill{
+      position:absolute;inset:0;
+      -webkit-mask:url('/phytosentry-logo-full.png') center/contain no-repeat;
+      mask:url('/phytosentry-logo-full.png') center/contain no-repeat;
+    }
+    .splash-logo-base{background:rgba(255,255,255,.22);filter:drop-shadow(0 12px 24px rgba(0,0,0,.18));}
+    .splash-logo-fill{background:linear-gradient(180deg,#7ee787 0%,#4ade80 45%,#22c55e 100%);clip-path:inset(100% 0 0 0);animation:fillUp 3s linear forwards;filter:drop-shadow(0 14px 32px rgba(74,222,128,.16));}
+    @keyframes fillUp{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+    .splash-slogan{margin-top:10px;font-size:18px;letter-spacing:1.2px;color:#d8f7df;text-align:center;font-family:'Nasalization','DM Sans',monospace;max-width:780px;line-height:1.65;text-shadow:0 0 14px rgba(74,222,128,.12);}
+    .splash-loading{margin-top:26px;display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;border:1px solid rgba(74,222,128,.25);background:rgba(74,222,128,.08);color:#4ade80;font-family:'Nasalization','DM Sans',monospace;font-size:13px;letter-spacing:1.4px;box-shadow:0 0 22px rgba(74,222,128,.08);}
+    .splash-dots span{display:inline-block;animation:splashDot 1.2s infinite;opacity:.25;transform:translateY(0)}
+    .splash-dots span:nth-child(2){animation-delay:.2s}
+    .splash-dots span:nth-child(3){animation-delay:.4s}
+    @keyframes splashDot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
+  </style>
+</head>
+<body>
+  <!-- Instant loading splash (removed once React mounts) -->
+  <div class="splash" id="splash">
+    <div class="splashWrap">
+      <div class="splash-mark" aria-hidden="true">
+        <div class="splash-logo-base"></div>
+        <div class="splash-logo-fill"></div>
+      </div>
+      <div class="splash-slogan">From Leaf to Life — Detect, Protect, Grow</div>
+      <div class="splash-loading">Loading <span class="splash-dots"><span>.</span><span>.</span><span>.</span></span></div>
+    </div>
+  </div>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- Keep splash visible for a minimum duration, then remove once React has painted -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const startedAt = Date.now();
+      const minimumSplashMs = 3200;
+      const root = document.getElementById('root');
+      const splash = document.getElementById('splash');
+      let appReady = false;
+      let closing = false;
+
+      function closeSplash() {
+        if (!appReady || !splash || closing) return;
+        closing = true;
+        const remaining = Math.max(0, minimumSplashMs - (Date.now() - startedAt));
+        setTimeout(() => {
+          splash.style.opacity = '0';
+          setTimeout(() => splash.remove(), 420);
+        }, remaining);
+      }
+
+      const observer = new MutationObserver(() => {
+        if (root.children.length > 0) {
+          appReady = true;
+          observer.disconnect();
+          closeSplash();
+        }
+      });
+
+      observer.observe(root, { childList: true });
+      setTimeout(closeSplash, minimumSplashMs);
+    });
+  </script>
+</body>
+</html>

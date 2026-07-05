@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: phytosentry-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    disk:
+      name: phytosentry-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PHYTOSENTRY_DATA_DIR
+        value: /var/data
+      - key: PHYTOSENTRY_CORS_ORIGINS
+        sync: false
+      - key: PHYTOSENTRY_FRONTEND_URL
+        sync: false
+      - key: PHYTOSENTRY_SESSION_TTL_SECONDS
+        value: "2592000"
+      - key: PHYTOSENTRY_WEATHER_CACHE_SECONDS
+        value: "1800"
+      - key: PHYTOSENTRY_CLEANUP_MAX_AGE_DAYS
+        value: "14"
+      - key: PHYTOSENTRY_DEV_RESET_TOKEN
+        value: "0"

@@ -1,0 +1,27 @@
+PhytoSentry Online Deployment Guide
+==================================
+
+Use this production split:
+- Frontend: Vercel
+- Backend: Render/Railway/VPS
+- Persistent data: Render persistent disk or equivalent mounted storage
+
+Do NOT deploy the TensorFlow FastAPI backend as a Vercel serverless function. The backend needs the .keras model, image uploads, PDF report generation, SQLite DB, weather cache, chatbot history, and persistent storage.
+
+Quick steps
+-----------
+1. Deploy backend using render.yaml.
+2. In Render, set:
+   PHYTOSENTRY_DATA_DIR=/var/data
+   PHYTOSENTRY_CORS_ORIGINS=https://your-vercel-app.vercel.app
+   PHYTOSENTRY_FRONTEND_URL=https://your-vercel-app.vercel.app
+3. Test backend:
+   /api/health
+   /api/deploy-check
+   /api/model-info
+4. Deploy frontend from the frontend folder on Vercel.
+5. In Vercel, set:
+   VITE_API_URL=https://your-backend.onrender.com
+6. Redeploy frontend and test signup, login, scan, history, report PDF, weather, dashboard, admin, and chatbot.
+
+See VERCEL_RENDER_DEPLOYMENT_GUIDE.txt for full details.
