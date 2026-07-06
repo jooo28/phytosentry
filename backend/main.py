@@ -31,7 +31,7 @@ from reportlab.lib.utils import simpleSplit
 app = FastAPI(title="PhytoSentry AI API")
 
 def allowed_cors_origins():
-    raw = os.getenv("PHYTOSENTRY_CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173")
+    raw = os.getenv("PHYTOSENTRY_CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,https://phytosentry.vercel.app")
     return [x.strip() for x in raw.split(",") if x.strip()]
 
 app.add_middleware(
