@@ -7,7 +7,7 @@ import {
   ScanLine, Sun, Zap, AlertTriangle, Users, Activity, ChevronRight,
   Star, Award, Cloud, Droplets, Wind, ThermometerSun, MapPin, MessageCircle,
   Shield, Layers, RefreshCw, LogOut, Microscope, FlaskConical, Wheat,
-  Bug, Thermometer, Clock, Calendar, Search, Plus, BookOpen, Cpu} from "lucide-react";
+  Bug, Thermometer, Clock, Calendar, Search, Plus, BookOpen, Cpu, Database, Server, Leaf, Monitor} from "lucide-react";
 import "./styles.css";
 import logoImg from "./phytoosentry-logo.png";
 const API = import.meta.env.VITE_API_URL || `${window.location.protocol}//${window.location.hostname}:8000`;
@@ -563,8 +563,8 @@ function App() {
         <div className="footerDeveloperInfo">
           <p>
             Developed by <strong>Joy</strong><br />
-            Student of Department of CSE<strong>
-            Jagannath University</strong>
+            <strong>Student of Department of CSE</strong><br />
+            <strong>Jagannath University</strong>
           </p>
 
           <a href="mailto:joyanonda@gmail.com">
@@ -1406,50 +1406,75 @@ function AboutPage({ go, t }) {
   ];
 
   const tech = [
-    {
-      icon: <Cpu size={18} />,
-      title: "Deep Learning",
-      text: "TensorFlow/Keras CNN trained on 120K+ leaf images"
-    },
-    {
-      icon: <Shield size={18} />,
-      title: "Secure Cloud",
-      text: "End-to-end encryption, GDPR-compliant"
-    },
-    {
-      icon: <Activity size={18} />,
-      title: "Real-time API",
-      text: "Sub-3 second inference, 99% uptime"
-    },
-    {
-      icon: <Globe size={18} />,
-      title: "Bilingual UI",
-      text: "Full English and Bangla interface"
-    }
-  ];
+  {
+    icon: <Cpu size={18} />,
+    title: "Deep Learning",
+    text: "EfficientNetB0 fine-tuned using TensorFlow/Keras for plant disease classification."
+  },
+  {
+    icon: <Shield size={18} />,
+    title: "Secure System",
+    text: "Secure image processing with reliable backend communication."
+  },
+  {
+    icon: <Activity size={18} />,
+    title: "Real-time Detection",
+    text: "Instant AI-powered disease prediction with confidence score."
+  },
+  {
+    icon: <Globe size={18} />,
+    title: "Bilingual Interface",
+    text: "Supports both English and Bangla for better accessibility."
+  },
+  {
+    icon: <Database size={18} />,
+    title: "Plant Disease Dataset",
+    text: "Trained on the Kaggle New Plant Diseases Dataset with 38 disease classes."
+  },
+  {
+    icon: <Server size={18} />,
+    title: "FastAPI Backend",
+    text: "REST API serving TensorFlow model predictions in real time."
+  },
+  {
+    icon: <Monitor size={18} />,
+    title: "React + Vite",
+    text: "Modern frontend delivering a fast and responsive user experience."
+  },
+  {
+    icon: <Award size={18} />,
+    title: "High Accuracy",
+    text: "Fine-tuned EfficientNetB0 achieving 98.21% validation accuracy."
+  }
+];
 
   return (
     <section className="aboutPage aboutV2Page">
 
       <div className="aboutV2Head">
+
         <div className="aboutIcon">
           <Leaf size={28} />
         </div>
 
         <div>
           <span className="pageStep">STEP A</span>
+
           <h2 className="aboutTitle aboutV2Title">
             ABOUT PHYTOSENTRY
           </h2>
+
           <p className="aboutSub">
             Our mission, technology, and team.
           </p>
+
         </div>
+
       </div>
 
       <div className="aboutV2Grid">
 
-        {/* Left Card */}
+        {/* LEFT */}
 
         <div className="pageCard aboutV2Story">
 
@@ -1459,8 +1484,9 @@ function AboutPage({ go, t }) {
 
           <p>
             PhytoSentry was built to empower Bangladeshi farmers with
-            cutting-edge AI, making expert-level plant disease diagnosis
-            accessible to everyone, anywhere.
+            cutting-edge Artificial Intelligence, making expert-level
+            plant disease diagnosis accessible to everyone,
+            anywhere.
           </p>
 
           <div className="developerBox">
@@ -1468,8 +1494,9 @@ function AboutPage({ go, t }) {
             <h4>Developer</h4>
 
             <p>
-              This website was developed by <strong>Joy</strong>,
-              student of <strong>Jagannath University</strong>.
+              Developed by <strong>Joy</strong><br />
+              Student of Department of CSE<br />
+              <strong>Jagannath University</strong>
             </p>
 
             <a
@@ -1489,17 +1516,27 @@ function AboutPage({ go, t }) {
           </div>
 
           <div className="aboutV2Stats">
+
             {stats.map(([v, l]) => (
-              <div key={l} className="aboutV2Stat">
+
+              <div
+                key={l}
+                className="aboutV2Stat"
+              >
+
                 <b>{v}</b>
+
                 <span>{l}</span>
+
               </div>
+
             ))}
+
           </div>
 
         </div>
 
-        {/* Right Card */}
+        {/* RIGHT */}
 
         <div className="pageCard techStackCard">
 
@@ -1519,8 +1556,11 @@ function AboutPage({ go, t }) {
                 </div>
 
                 <div>
+
                   <b>{item.title}</b>
+
                   <p>{item.text}</p>
+
                 </div>
 
               </div>

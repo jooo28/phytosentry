@@ -425,7 +425,18 @@ p,small,label,input,select,textarea,span{letter-spacing:.01em;}
 .aboutV2Head{display:flex;align-items:center;gap:22px;padding:0 26px}
 .aboutV2Title{font-family:var(--font-display)!important;text-transform:uppercase;letter-spacing:4px;font-size:38px!important;line-height:1.1;margin-top:6px}
 .aboutV2Grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;padding:0 26px 10px}
-.aboutV2Story,.techStackCard{border-radius:28px!important;border:1px solid rgba(74,222,128,.16)!important;background:rgba(6,22,12,.72)!important;box-shadow:none!important;padding:56px 48px!important;min-height:430px;display:flex;flex-direction:column;justify-content:center}
+.aboutV2Story,
+.techStackCard{
+    border-radius:28px!important;
+    border:1px solid rgba(74,222,128,.16)!important;
+    background:rgba(6,22,12,.72)!important;
+    box-shadow:none!important;
+    padding:56px 48px!important;
+    min-height:560px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+}
 .aboutV2Story .docplantLogo{margin:0 auto 38px!important}
 .aboutV2Story h3{font-family:var(--font-display);font-size:30px;letter-spacing:1px;color:var(--txt);margin-bottom:28px}
 .aboutV2Story p{color:var(--txt2);font-size:15px;line-height:1.9;max-width:720px;margin-bottom:38px}
@@ -435,8 +446,39 @@ p,small,label,input,select,textarea,span{letter-spacing:.01em;}
 .aboutV2Stat span{display:block;color:var(--txt3);font-size:10px;text-transform:uppercase;letter-spacing:1.2px}
 .techStackCard h3{font-family:var(--font-display);font-size:17px;letter-spacing:3px;color:var(--txt);margin-bottom:26px;text-transform:uppercase}
 .techList{display:flex;flex-direction:column;gap:16px}
-.techItem{display:flex;align-items:center;gap:18px;border:1px solid rgba(74,222,128,.16);background:rgba(9,29,16,.62);border-radius:15px;padding:18px}
-.techIcon{width:48px;height:48px;border-radius:12px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.18);display:grid;place-items:center;color:var(--green);flex:0 0 48px}
+.techItem{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    border:1px solid rgba(74,222,128,.16);
+    background:rgba(9,29,16,.62);
+    border-radius:15px;
+    padding:18px;
+    min-height:82px;
+    transition:.25s ease;
+}
+
+.techItem:hover{
+    transform:translateY(-3px);
+    background:rgba(34,197,94,.08);
+}
+.techIcon{
+    width:48px;
+    height:48px;
+    border-radius:12px;
+    background:rgba(34,197,94,.15);
+    border:1px solid rgba(34,197,94,.25);
+    display:grid;
+    place-items:center;
+    color:var(--green);
+    flex:0 0 48px;
+    transition:.25s ease;
+}
+
+.techItem:hover .techIcon{
+    transform:scale(1.08);
+    background:rgba(34,197,94,.22);
+}
 .techItem b{display:block;color:var(--txt);font-size:14px;margin-bottom:5px}
 .techItem p{color:var(--txt3);font-size:13px;line-height:1.5;margin:0!important}
 
