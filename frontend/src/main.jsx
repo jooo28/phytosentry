@@ -539,42 +539,91 @@ function App() {
         {page==="weather"&&<WeatherPage go={go} t={t}/>}
         {page==="admin"&&<AdminPage items={items} go={go} t={t} lang={lang}/>}
       </main>
-      <footer className="siteFooter richFooter">
-        <div className="footerInner footerGrid">
-          <div className="footerBrand footerBrandBlock">
-            <DocPlantLogo size="lg"/>
-            <div>
-              <b>{t.brand}</b>
-              <p>{t.slogan}</p>
-              <p className="footerCopy">© 2026 PhytoSentry · All rights reserved by</p>
-              <p className="footerMadeFor">Made for Bangladeshi farmers</p>
 
-            </div>
-          </div>
-          <div className="footerCol">
-  <h4>DEVELOPER</h4>
+<footer className="siteFooter richFooter">
+  <div className="footerInner footerGrid">
 
-  <p className="footerDeveloper">
-    Developed by <strong>Joy</strong><br />
-    Student, <strong>Jagannath University</strong>
-  </p>
+    <div className="footerBrand footerBrandBlock">
+      <DocPlantLogo size="lg"/>
 
-  <a
-    href="mailto:joyanonda@gmail.com"
-    className="footerMail"
-  >
-    📧 joyanonda@gmail.com
-  </a>
+      <div>
+        <b>{t.brand}</b>
 
-  <a
-    href="mailto:joyanonda@gmail.com"
-    className="footerContactBtn"
-  >
-    Contact Developer
-  </a>
-</div>
+        <p>{t.slogan}</p>
+
+        <p className="footerCopy">
+          © 2026 PhytoSentry · All rights reserved
+        </p>
+
+        <p className="footerMadeFor">
+          Made for Bangladeshi farmers
+        </p>
+
+        {/* Developer Info */}
+        <div className="footerDeveloperInfo">
+          <p>
+            Developed by <strong>Joy</strong><br />
+            Student of Department of CSE<strong>
+            Jagannath University</strong>
+          </p>
+
+          <a href="mailto:joyanonda@gmail.com">
+            📧 joyanonda@gmail.com
+          </a>
         </div>
-      </footer>
+
+      </div>
+    </div>
+
+    {/* এখান থেকে তোমার PRODUCT column থাকবে */}
+    <div className="footerCol">
+      <h4>PRODUCT</h4>
+      {[["scan","Scan Leaf"],["dashboard","Dashboard"],["history","History"],["weather","Weather"]].map(([id,l])=>(
+        <button
+          key={id}
+          className={page===id?"active":""}
+          onClick={()=>go(id)}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+
+    {/* COMPANY unchanged */}
+    <div className="footerCol">
+      <h4>COMPANY</h4>
+      {[["about","About"],["experts","Experts"],["payments","Pricing"],["admin","Admin"]].map(([id,l])=>(
+        <button
+          key={id}
+          className={page===id?"active":""}
+          onClick={()=>go(id)}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+
+    {/* SUPPORT unchanged */}
+    <div className="footerCol">
+      <h4>SUPPORT</h4>
+
+      {[["settings","Settings"],["auth","Sign In"]].map(([id,l])=>(
+        <button
+          key={id}
+          className={(id==='auth' ? page==='auth' : page===id)?"active":""}
+          onClick={()=>id==='auth'?auth('signin'):go(id)}
+        >
+          {l}
+        </button>
+      ))}
+
+      <a className="footerHotline" href="tel:+8801700000000">
+        <Phone size={16}/> 24/7 Hotline
+      </a>
+    </div>
+
+  </div>
+</footer>
 
       {/* Floating action widget */}
       <div className={`fab ${floatOpen?"open":""}`}>
@@ -1347,140 +1396,146 @@ function ProfilePage({user,setUser,go,t}){
 }
 
 
-function AboutPage({go,t}){
-  const stats=[["50,000+","FarmERS SERVED"],["38+","DISEASES DETECTED"],["98.2%","ACCURACY RATE"],["64","DISTRICTS"]];
-  const tech=[
-    {icon:<Cpu size={18}/>,title:"Deep Learning",text:"TensorFlow/Keras CNN trained on 120K+ leaf images"},
-    {icon:<Shield size={18}/>,title:"Secure Cloud",text:"End-to-end encryption, GDPR-compliant"},
-    {icon:<Activity size={18}/>,title:"Real-time API",text:"Sub-3 second inference, 99% uptime"},
-    {icon:<Globe size={18}/>,title:"Bilingual UI",text:"Full English and Bangla interface"},
+function AboutPage({ go, t }) {
+
+  const stats = [
+    ["50,000+", "FARMERS SERVED"],
+    ["38+", "DISEASES DETECTED"],
+    ["98.2%", "ACCURACY RATE"],
+    ["64", "DISTRICTS"]
   ];
-  return(
+
+  const tech = [
+    {
+      icon: <Cpu size={18} />,
+      title: "Deep Learning",
+      text: "TensorFlow/Keras CNN trained on 120K+ leaf images"
+    },
+    {
+      icon: <Shield size={18} />,
+      title: "Secure Cloud",
+      text: "End-to-end encryption, GDPR-compliant"
+    },
+    {
+      icon: <Activity size={18} />,
+      title: "Real-time API",
+      text: "Sub-3 second inference, 99% uptime"
+    },
+    {
+      icon: <Globe size={18} />,
+      title: "Bilingual UI",
+      text: "Full English and Bangla interface"
+    }
+  ];
+
+  return (
     <section className="aboutPage aboutV2Page">
+
       <div className="aboutV2Head">
-        <div className="aboutIcon"><Leaf size={28}/></div>
+        <div className="aboutIcon">
+          <Leaf size={28} />
+        </div>
+
         <div>
           <span className="pageStep">STEP A</span>
-          <h2 className="aboutTitle aboutV2Title">ABOUT PHYTOSENTRY</h2>
-          <p className="aboutSub">Our mission, technology, and team.</p>
+          <h2 className="aboutTitle aboutV2Title">
+            ABOUT PHYTOSENTRY
+          </h2>
+          <p className="aboutSub">
+            Our mission, technology, and team.
+          </p>
         </div>
       </div>
 
       <div className="aboutV2Grid">
+
+        {/* Left Card */}
+
         <div className="pageCard aboutV2Story">
-          <DocPlantLogo size="lg"/>
+
+          <DocPlantLogo size="lg" />
+
           <h3>From Leaf to Life</h3>
-          <div className="pageCard aboutV2Story">
-  <DocPlantLogo size="lg" />
 
-  <h3>From Leaf to Life</h3>
+          <p>
+            PhytoSentry was built to empower Bangladeshi farmers with
+            cutting-edge AI, making expert-level plant disease diagnosis
+            accessible to everyone, anywhere.
+          </p>
 
-  <p>
-    PhytoSentry was built to empower Bangladeshi farmers with cutting-edge AI,
-    making expert-level plant disease diagnosis accessible to everyone,
-    anywhere.
-  </p>
+          <div className="developerBox">
 
-  <div className="developerBox">
-    <h4>Developer</h4>
+            <h4>Developer</h4>
 
-    <p>
-      This website was developed by <strong>Joy</strong>, a student of
-      <strong> Jagannath University</strong>
-    </p>
+            <p>
+              This website was developed by <strong>Joy</strong>,
+              student of <strong>Jagannath University</strong>.
+            </p>
 
-    <a
-      href="mailto:joyanonda@gmail.com"
-      className="contactBtn"
-    >
-      📧 Contact Developer
-    </a>
+            <a
+              href="mailto:joyanonda@gmail.com"
+              className="contactBtn"
+            >
+              📧 Contact Developer
+            </a>
 
-    <p className="devEmail">
-      Email:
-      <a href="mailto:joyanonda@gmail.com">
-        {" "}joyanonda@gmail.com
-      </a>
-    </p>
-  </div>
+            <p className="devEmail">
+              Email:
+              <a href="mailto:joyanonda@gmail.com">
+                {" "}joyanonda@gmail.com
+              </a>
+            </p>
 
-  <div className="aboutV2Stats">
-    {stats.map(([v, l]) => (
-      <div key={l} className="aboutV2Stat">
-        <b>{v}</b>
-        <span>{l}</span>
-      </div>
-    ))}
-  </div>
-</div>
-          <div className="aboutV2Stats">
-            {stats.map(([v,l])=><div key={l} className="aboutV2Stat"><b>{v}</b><span>{l}</span></div>)}
           </div>
-        </div>
 
-        <div className="pageCard techStackCard">
-          <h3>TECHNOLOGY STACK</h3>
-          <div className="techList">
-            {tech.map(item=>(
-              <div key={item.title} className="techItem">
-                <div className="techIcon">{item.icon}</div>
-                <div><b>{item.title}</b><p>{item.text}</p></div>
+          <div className="aboutV2Stats">
+            {stats.map(([v, l]) => (
+              <div key={l} className="aboutV2Stat">
+                <b>{v}</b>
+                <span>{l}</span>
               </div>
             ))}
           </div>
+
         </div>
+
+        {/* Right Card */}
+
+        <div className="pageCard techStackCard">
+
+          <h3>TECHNOLOGY STACK</h3>
+
+          <div className="techList">
+
+            {tech.map(item => (
+
+              <div
+                key={item.title}
+                className="techItem"
+              >
+
+                <div className="techIcon">
+                  {item.icon}
+                </div>
+
+                <div>
+                  <b>{item.title}</b>
+                  <p>{item.text}</p>
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
       </div>
+
     </section>
   );
 }
-
-// ── Payments ───────────────────────────────────────────────────────────────────
-function PaymentsPage({go,t}){
-  const methods=[
-    {name:"bKash",icon:"📱",color:"#e2136e",desc:"Pay with bKash mobile banking"},
-    {name:"Nagad",icon:"💳",color:"#f7941d",desc:"Pay with Nagad digital wallet"},
-    {name:"Rocket",icon:"🚀",color:"#8b1c8b",desc:"Pay with Rocket mobile banking"},
-    {name:"Visa / MasterCard",icon:"💳",color:"#1a1f71",desc:"International card payments"},
-    {name:"Bank Transfer",icon:"🏦",color:"#2c5f2e",desc:"Direct bank wire transfer"},
-    {name:"Cash Payment",icon:"💵",color:"#4a7c59",desc:"Cash on delivery / agent"},
-  ];
-  return(
-    <section className="innerPage">
-      <PageHdr step="3" title="Payments & Subscription" sub="Manage your plan and payment methods." icon={<CreditCard size={26}/>}/>
-      <TwoPanel active="payments" go={go} t={t}>
-        <h3 className="secLabel2">Choose Your Plan</h3>
-        <div className="plansRow paymentPlans">
-          <div className="planCard">
-            <h3>Free</h3><div className="planPrice"><b>৳0</b><span>/month</span></div>
-            <ul>{["10 scans per day","Basic disease info","Email support","Web access"].map(f=><li key={f}><CheckCircle2 size={14}/>{f}</li>)}</ul>
-            <button className="ghostBtn wide">Start Free</button>
-          </div>
-          <div className="planCard planHL">
-            <div className="planBadge"><Star size={12}/> Most Popular</div>
-            <h3>Premium</h3><div className="planPrice"><b>৳99</b><span>/month</span></div>
-            <ul>{["Unlimited scans","PDF reports & history","Expert advisory","Priority support","Weather risk alerts","Bangla interface"].map(f=><li key={f}><CheckCircle2 size={14}/>{f}</li>)}</ul>
-            <button className="primaryBtn wide">Go Premium</button>
-          </div>
-        </div>
-        <div className="curPlan">
-          <Award size={22}/><div><b>Premium Plan Active</b><p>Renews July 5, 2026 · ৳99/month</p></div>
-          <span className="activeBadge">✓ Active</span>
-        </div>
-        <h3 className="secLabel2">Payment Methods</h3>
-        <div className="payGrid">
-          {methods.map(m=>(
-            <div key={m.name} className="payCard">
-              <div className="payIco" style={{background:m.color+"22",color:m.color}}>{m.icon}</div>
-              <div><b>{m.name}</b><p>{m.desc}</p></div>
-              <button className="outlineBtn sm">Add</button>
-            </div>
-          ))}
-        </div>
-      </TwoPanel>
-    </section>
-  );
-}
-
 // ── Settings ───────────────────────────────────────────────────────────────────
 function SettingsPage({dark,setDark,lang,setLang,go,t}){
   const [notif,setNotif]=useState(true);

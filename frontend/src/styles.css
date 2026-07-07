@@ -585,97 +585,76 @@ html,body,.app,button,a,input,select,textarea,
   font-family:var(--font-bangla) !important;
   letter-spacing:0 !important;
 }
-.developerBox{
-  margin:22px 0;
-  padding:18px;
-  border:1px solid rgba(34,197,94,.25);
-  background:#f7fff8;
-  border-radius:16px;
-}
+/* ---------- Developer Box ---------- */
 
-.dark .developerBox{
-  background:#16251b;
-  border-color:#2d7a45;
+.developerBox{
+    margin:20px 0;
+    padding:18px;
+    border:1px solid rgba(34,197,94,.25);
+    border-radius:16px;
+    background:rgba(34,197,94,.05);
 }
 
 .developerBox h4{
-  margin-bottom:10px;
-  color:#1f7a39;
-  font-size:18px;
+    margin:0 0 12px;
+    color:#22c55e;
+    font-size:18px;
 }
 
 .developerBox p{
-  margin:8px 0;
-  line-height:1.7;
+    margin:0 0 10px;
+    line-height:1.7;
 }
 
 .contactBtn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  margin-top:12px;
-  padding:12px 22px;
-  background:#22c55e;
-  color:#fff;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:600;
-  transition:.25s;
+    display:inline-block;
+    margin-top:10px;
+    padding:12px 20px;
+    border-radius:10px;
+    background:#22c55e;
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    transition:.25s;
 }
 
 .contactBtn:hover{
-  background:#16a34a;
-  transform:translateY(-2px);
+    background:#16a34a;
+    transform:translateY(-2px);
 }
 
 .devEmail{
-  margin-top:12px;
+    margin-top:12px;
 }
 
 .devEmail a{
-  color:#16a34a;
-  text-decoration:none;
-  font-weight:600;
+    color:#22c55e;
+    text-decoration:none;
+    font-weight:600;
 }
 
 .devEmail a:hover{
-  text-decoration:underline;
+    text-decoration:underline;
 }
 
-.footerDeveloper{
-  margin:10px 0;
-  line-height:1.7;
-  color:inherit;
-  font-size:14px;
+
+.footerDeveloperInfo{
+    margin-top:14px;
+    font-size:13px;
+    line-height:1.6;
 }
 
-.footerMail{
-  display:block;
-  margin:10px 0;
-  color:#22c55e;
-  text-decoration:none;
-  font-weight:600;
-  transition:.25s;
+.footerDeveloperInfo p{
+    margin:0 0 8px;
 }
 
-.footerMail:hover{
-  color:#16a34a;
-  text-decoration:underline;
+.footerDeveloperInfo a{
+    color:#22c55e;
+    text-decoration:none;
+    font-weight:600;
 }
 
-.footerContactBtn{
-  display:inline-block;
-  margin-top:8px;
-  padding:10px 16px;
-  background:#22c55e;
-  color:#fff;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:600;
-  transition:.25s;
-}
-
-.footerContactBtn:hover{
-  background:#16a34a;
-  transform:translateY(-2px);
+.footerDeveloperInfo a:hover{
+    color:#16a34a;
+    text-decoration:underline;
 }
