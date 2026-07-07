@@ -7,7 +7,7 @@ import {
   ScanLine, Sun, Zap, AlertTriangle, Users, Activity, ChevronRight,
   Star, Award, Cloud, Droplets, Wind, ThermometerSun, MapPin, MessageCircle,
   Shield, Layers, RefreshCw, LogOut, Microscope, FlaskConical, Wheat,
-  Bug, Thermometer, Clock, Calendar, Search, Plus, BookOpen, Cpu, Database, Server, Leaf, Monitor} from "lucide-react";
+  Bug, Thermometer, Clock, Calendar, Search, Plus, BookOpen, Cpu, Database, Server, Monitor} from "lucide-react";
 import "./styles.css";
 import logoImg from "./phytoosentry-logo.png";
 const API = import.meta.env.VITE_API_URL || `${window.location.protocol}//${window.location.hostname}:8000`;
