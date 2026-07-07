@@ -583,6 +583,7 @@ def open_meteo_forecast(latitude: float, longitude: float, location: str):
     })
     url = f"https://api.open-meteo.com/v1/forecast?{params}"
     with urllib.request.urlopen(url, timeout=10) as response:
+        print(payload)
         payload = json.loads(response.read().decode("utf-8"))
 
     current = payload.get("current", {})
@@ -925,6 +926,16 @@ def health():
         "storage": storage_status(),
     }
 
+@app.get("/api/weather-test")
+def weather_test():
+    try:
+        data = open_meteo_forecast(23.8103, 90.4125, "Dhaka")
+        return data
+    except Exception as e:
+        return {
+            "error_type": type(e).__name__,
+            "error": str(e)
+        }
 
 @app.get("/api/deploy-check")
 def deploy_check():
