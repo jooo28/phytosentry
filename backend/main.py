@@ -62,7 +62,7 @@ DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 UPLOADS.mkdir(parents=True, exist_ok=True)
 REPORTS.mkdir(parents=True, exist_ok=True)
 SESSION_TTL_SECONDS = int(os.getenv("PHYTOSENTRY_SESSION_TTL_SECONDS", str(60 * 60 * 24 * 30)))
-WEATHER_CACHE_SECONDS = int(os.getenv("PHYTOSENTRY_WEATHER_CACHE_SECONDS", "1800"))
+WEATHER_CACHE_SECONDS = int(os.getenv("PHYTOSENTRY_WEATHER_CACHE_SECONDS", "21600"))
 CLEANUP_MAX_AGE_DAYS = int(os.getenv("PHYTOSENTRY_CLEANUP_MAX_AGE_DAYS", "14"))
 RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("PHYTOSENTRY_RATE_WINDOW_SECONDS", "60"))
 RATE_LIMIT_MAX_REQUESTS = int(os.getenv("PHYTOSENTRY_RATE_MAX_REQUESTS", "120"))
@@ -575,16 +575,24 @@ def open_meteo_forecast(latitude: float, longitude: float, location: str):
     params = urllib.parse.urlencode({
         "latitude": latitude,
         "longitude": longitude,
-        "current": "temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m",
-        "hourly": "precipitation_probability,precipitation",
+        "current": "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m",
         "daily": "uv_index_max,precipitation_sum",
         "timezone": "auto",
         "forecast_days": 1,
-    })
-    url = f"https://api.open-meteo.com/v1/forecast?{params}"
-    with urllib.request.urlopen(url, timeout=10) as response:
-        print(payload)
-        payload = json.loads(response.read().decode("utf-8"))
+})
+
+url = f"https://api.open-meteo.com/v1/forecast?{params}"
+
+request = urllib.request.Request(
+    url,
+    headers={
+        "User-Agent": "PhytoSentry/1.0",
+        "Accept": "application/json",
+    },
+)
+
+with urllib.request.urlopen(request, timeout=10) as response:
+    payload = json.loads(response.read().decode("utf-8"))
 
     current = payload.get("current", {})
     daily = payload.get("daily", {})
