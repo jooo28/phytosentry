@@ -31,12 +31,12 @@ const LANG = {
     report:"Report", print:"Print", pdf:"PDF", bangla:"Bangla", english:"English",
   },
   bn: {
-    brand:"PhytoSentry", tagline:"পাতা থেকে প্রাণ", slogan:"পাতা থেকে প্রাণ — সনাক্ত, সুরক্ষা, বিকাশ",
+    brand:"PhytoSentry", tagline:"পাতা থেকে প্রাণ", slogan:"পাতা থেকে প্রাণ — শনাক্ত, সুরক্ষা, বিকাশ",
     home:"হোম", scan:"পাতা স্ক্যান", dashboard:"ড্যাশবোর্ড", history:"ইতিহাস", about:"অ্যাবাউট",
     profile:"প্রোফাইল", payments:"পেমেন্ট", settings:"সেটিংস", treatment:"চিকিৎসা",
     signin:"সাইন ইন", signup:"সাইন আপ",
-    heroTitle:"এআই-চালিত উদ্ভিদ রোগ সনাক্তকরণ",
-    heroSub:"পাতার ছবি আপলোড করুন। PhytoSentry রোগ সনাক্ত করে, আস্থার স্কোর দেখায় এবং তাৎক্ষণিক চিকিৎসা পরিকল্পনা দেয়।",
+    heroTitle:"এআই-চালিত উদ্ভিদ রোগ শনাক্তকরণ",
+    heroSub:"পাতার ছবি আপলোড করুন। PhytoSentry রোগ শনাক্ত করে, আস্থার স্কোর দেখায় এবং তাৎক্ষণিক চিকিৎসা পরিকল্পনা দেয়।",
     scanNow:"এখনই স্ক্যান করুন", getStarted:"বিনামূল্যে অ্যাকাউন্ট খুলুন",
     uploadTitle:"পাতার ছবি আপলোড করুন", uploadSub:"আক্রান্ত পাতার একটি স্পষ্ট ছবি আপলোড করুন।",
     analyzeBtn:"পাতা বিশ্লেষণ করুন", continueDemo:"ডেমো চালিয়ে যান",
@@ -142,7 +142,7 @@ const EXTRA_STATIC_BN = {
   "Priority support": "প্রায়োরিটি সাপোর্ট",
   "Weather risk alerts": "আবহাওয়া ঝুঁকি অ্যালার্ট",
   "Bangla interface": "বাংলা ইন্টারফেস",
-  "Renews June 5, 2025 · ৳299/month": "৫ জুন ২০২৫ নবায়ন হবে · ৳২৯৯/মাস",
+  "Renews July 5, 2026 · ৳99/month": "৫ জুলাই ২০২৬ নবায়ন হবে · ৳৯৯/মাস",
   "Bank Transfer": "ব্যাংক ট্রান্সফার",
   "Direct bank wire transfer": "সরাসরি ব্যাংক ওয়্যার ট্রান্সফার",
   "Cash Payment": "নগদ পেমেন্ট",
@@ -260,10 +260,10 @@ const EXTRA_STATIC_BN = {
   "Available": "উপলব্ধ",
   "Busy": "ব্যস্ত",
   "Contact": "যোগাযোগ",
-  "Dr. Kamal Ahmed": "ড. কামাল আহমেদ",
-  "Dr. Nasrin Islam": "ড. নাসরিন ইসলাম",
+  "Dr. Fabiha Islam": "ড. ফাবিহা ইসলাম",
+  "Dr. Fariha Islam": "ড. ফারিহা ইসলাম",
   "Mohammad Hasan": "মোহাম্মদ হাসান",
-  "Fatema Begum": "ফাতেমা বেগম",
+  "Asma Begum": "আসমা বেগম",
   "Abdul Karim": "আব্দুল করিম",
   "Rahim Molla": "রহিম মোল্লা",
   "Farida Begum": "ফরিদা বেগম",
@@ -546,23 +546,33 @@ function App() {
             <div>
               <b>{t.brand}</b>
               <p>{t.slogan}</p>
-              <p className="footerCopy">© 2025 PhytoSentry · All rights reserved</p>
+              <p className="footerCopy">© 2026 PhytoSentry · All rights reserved by</p>
               <p className="footerMadeFor">Made for Bangladeshi farmers</p>
+
             </div>
           </div>
           <div className="footerCol">
-            <h4>PRODUCT</h4>
-            {[["scan","Scan Leaf"],["dashboard","Dashboard"],["history","History"],["weather","Weather"]].map(([id,l])=><button key={id} className={page===id?"active":""} onClick={()=>go(id)}>{l}</button>)}
-          </div>
-          <div className="footerCol">
-            <h4>COMPANY</h4>
-            {[["about","About"],["experts","Experts"],["payments","Pricing"],["admin","Admin"]].map(([id,l])=><button key={id} className={page===id?"active":""} onClick={()=>go(id)}>{l}</button>)}
-          </div>
-          <div className="footerCol">
-            <h4>SUPPORT</h4>
-            {[["settings","Settings"],["auth","Sign In"]].map(([id,l])=><button key={id} className={(id==='auth' ? page==='auth' : page===id)?"active":""} onClick={()=>id==='auth'?auth('signin'):go(id)}>{l}</button>)}
-            <a className="footerHotline" href="tel:+8801700000000"><Phone size={16}/> 24/7 Hotline</a>
-          </div>
+  <h4>DEVELOPER</h4>
+
+  <p className="footerDeveloper">
+    Developed by <strong>Joy</strong><br />
+    Student, <strong>Jagannath University</strong>
+  </p>
+
+  <a
+    href="mailto:joyanonda@gmail.com"
+    className="footerMail"
+  >
+    📧 joyanonda@gmail.com
+  </a>
+
+  <a
+    href="mailto:joyanonda@gmail.com"
+    className="footerContactBtn"
+  >
+    Contact Developer
+  </a>
+</div>
         </div>
       </footer>
 
@@ -1360,7 +1370,49 @@ function AboutPage({go,t}){
         <div className="pageCard aboutV2Story">
           <DocPlantLogo size="lg"/>
           <h3>From Leaf to Life</h3>
-          <p>PhytoSentry was built to empower Bangladeshi farmers with cutting-edge AI — making expert-level plant disease diagnosis accessible to everyone, anywhere.</p>
+          <div className="pageCard aboutV2Story">
+  <DocPlantLogo size="lg" />
+
+  <h3>From Leaf to Life</h3>
+
+  <p>
+    PhytoSentry was built to empower Bangladeshi farmers with cutting-edge AI,
+    making expert-level plant disease diagnosis accessible to everyone,
+    anywhere.
+  </p>
+
+  <div className="developerBox">
+    <h4>Developer</h4>
+
+    <p>
+      This website was developed by <strong>Joy</strong>, a student of
+      <strong> Jagannath University</strong>
+    </p>
+
+    <a
+      href="mailto:joyanonda@gmail.com"
+      className="contactBtn"
+    >
+      📧 Contact Developer
+    </a>
+
+    <p className="devEmail">
+      Email:
+      <a href="mailto:joyanonda@gmail.com">
+        {" "}joyanonda@gmail.com
+      </a>
+    </p>
+  </div>
+
+  <div className="aboutV2Stats">
+    {stats.map(([v, l]) => (
+      <div key={l} className="aboutV2Stat">
+        <b>{v}</b>
+        <span>{l}</span>
+      </div>
+    ))}
+  </div>
+</div>
           <div className="aboutV2Stats">
             {stats.map(([v,l])=><div key={l} className="aboutV2Stat"><b>{v}</b><span>{l}</span></div>)}
           </div>
@@ -1394,24 +1446,24 @@ function PaymentsPage({go,t}){
   ];
   return(
     <section className="innerPage">
-      <PageHdr step="$" title="Payments & Subscription" sub="Manage your plan and payment methods." icon={<CreditCard size={26}/>}/>
+      <PageHdr step="3" title="Payments & Subscription" sub="Manage your plan and payment methods." icon={<CreditCard size={26}/>}/>
       <TwoPanel active="payments" go={go} t={t}>
         <h3 className="secLabel2">Choose Your Plan</h3>
         <div className="plansRow paymentPlans">
           <div className="planCard">
             <h3>Free</h3><div className="planPrice"><b>৳0</b><span>/month</span></div>
-            <ul>{["5 scans per day","Basic disease info","Email support","Web access"].map(f=><li key={f}><CheckCircle2 size={14}/>{f}</li>)}</ul>
+            <ul>{["10 scans per day","Basic disease info","Email support","Web access"].map(f=><li key={f}><CheckCircle2 size={14}/>{f}</li>)}</ul>
             <button className="ghostBtn wide">Start Free</button>
           </div>
           <div className="planCard planHL">
             <div className="planBadge"><Star size={12}/> Most Popular</div>
-            <h3>Premium</h3><div className="planPrice"><b>৳299</b><span>/month</span></div>
+            <h3>Premium</h3><div className="planPrice"><b>৳99</b><span>/month</span></div>
             <ul>{["Unlimited scans","PDF reports & history","Expert advisory","Priority support","Weather risk alerts","Bangla interface"].map(f=><li key={f}><CheckCircle2 size={14}/>{f}</li>)}</ul>
             <button className="primaryBtn wide">Go Premium</button>
           </div>
         </div>
         <div className="curPlan">
-          <Award size={22}/><div><b>Premium Plan Active</b><p>Renews June 5, 2025 · ৳299/month</p></div>
+          <Award size={22}/><div><b>Premium Plan Active</b><p>Renews July 5, 2026 · ৳99/month</p></div>
           <span className="activeBadge">✓ Active</span>
         </div>
         <h3 className="secLabel2">Payment Methods</h3>
@@ -1464,10 +1516,10 @@ const Toggle = memo(function Toggle({v,set}){return<label className="toggle"><in
 // ── Experts ────────────────────────────────────────────────────────────────────
 function ExpertsPage({go,t}){
   const experts=[
-    {name:"Dr. Kamal Ahmed",spec:"Plant Pathologist",area:"Dhaka",rating:4.9,exp:"15 yrs",available:true},
-    {name:"Farida Begum",spec:"Agricultural Advisor",area:"Chittagong",rating:4.7,exp:"10 yrs",available:true},
+    {name:"Dr. Fabiha Islam",spec:"Plant Pathologist",area:"Dhaka",rating:4.9,exp:"15 yrs",available:true},
+    {name:"Asma Begum",spec:"Agricultural Advisor",area:"Chittagong",rating:4.7,exp:"10 yrs",available:true},
     {name:"Rahim Molla",spec:"Crop Protection Specialist",area:"Sylhet",rating:4.8,exp:"12 yrs",available:false},
-    {name:"Dr. Nasrin Islam",spec:"Soil Scientist",area:"Rajshahi",rating:4.6,exp:"8 yrs",available:true},
+    {name:"Dr. Fariha Islam",spec:"Soil Scientist",area:"Rajshahi",rating:4.6,exp:"8 yrs",available:true},
   ];
   return(
     <section className="innerPage">
